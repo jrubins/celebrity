@@ -1,9 +1,22 @@
 // Colors. Color names from: http://chir.ag/projects/name-that-color
 $black: #000;
+$blue: #214fb7;
+$gray-dark: #666;
+$gray-light: #efefef;
+$gray-medium: #ddd;
+$green: #68c524;
+$orange: #ffb116;
+$red: #d00b0b;
 $white: #fff;
 
+// Theme colors.
+$primary-color: $blue;
+$secondary-color: $orange;
+$theme-error: $red;
+
 // Fonts.
-$font-face: Helvetica, sans-serif;
+$font-face: 'Open Sans', sans-serif;
+$font-face-cursive: 'Caveat', cursive;
 $base-line-height: 1.5;
 
 // Breakpoints and sizing.

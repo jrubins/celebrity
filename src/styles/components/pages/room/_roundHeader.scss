@@ -1,0 +1,140 @@
+.round-header-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.leader {
+  position: relative;
+
+  .clock {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.clock {
+  text {
+    font-size: 30px;
+
+    stroke: $black;
+    fill: $black;
+  }
+}
+
+.clock-low {
+  text {
+    animation: pulse 1s ease infinite;
+
+    stroke: $theme-error;
+    fill: $theme-error;
+  }
+
+  .clock-seconds-left {
+    stroke: $theme-error;
+  }
+}
+
+.clock-seconds-left,
+.clock-outline {
+  fill: none;
+  stroke: $gray-medium;
+  stroke-width: 3px;
+}
+
+.clock-seconds-left {
+  transition: stroke-dashoffset 1000ms linear;
+
+  stroke: $primary-color;
+  stroke-dashoffset: 0;
+}
+
+.add-words {
+  .form {
+    display: flex;
+    justify-content: center;
+
+    margin: 20px 0 40px;
+  }
+
+  .input {
+    width: 300px;
+    margin-right: 20px;
+  }
+
+  .button {
+    width: 80px;
+  }
+}
+
+.add-words-submitted-words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  // The negative bottom margin compensates for the bottom margin on the submitted words.
+  margin: 20px 0 -15px;
+}
+
+.add-words-submitted-word {
+  position: relative;
+
+  margin: 0 15px 15px 0;
+  // 19px to the right makes room for the remove portion.
+  padding: 2px 24px 2px 10px;
+  border: 1px solid $black;
+  border-radius: 4px;
+}
+
+.add-words-submitted-word-remove {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  align-items: center;
+
+  height: 100%;
+  background-color: $black;
+
+  cursor: pointer;
+
+  .close-icon {
+    width: 16px;
+    height: 16px;
+
+    fill: $white;
+  }
+}
+
+.current-word {
+  font-size: 26px;
+  text-align: center;
+}
+
+.leader-actions {
+  display: flex;
+  justify-content: center;
+
+  margin: 20px 0 40px;
+
+  .button {
+    margin-right: 20px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    font-size: 30px;
+  }
+
+  50% {
+    font-size: 36px;
+  }
+
+  100% {
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,24 @@
+.room-page {
+  max-width: 600px;
+}
+
+.room-page-sidebar-description {
+  flex-grow: 1;
+}
+
+.room-page-sidebar-round-active {
+  color: $primary-color;
+
+  font-weight: bold;
+}
+
+.room-page-sidebar-user {
+  color: $gray-dark;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 40px;
+}

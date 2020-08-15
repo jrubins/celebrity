@@ -1,0 +1,33 @@
+.page {
+  padding: 40px;
+
+  .sidebar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: column;
+
+    width: 300px;
+    padding: 20px;
+    border-right: 1px solid $gray-light;
+
+    h1 {
+      color: $primary-color;
+
+      font-family: $font-face-cursive;
+      font-size: 40px;
+    }
+  }
+
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  main {
+    margin-left: 340px;
+  }
+}

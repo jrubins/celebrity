@@ -1,0 +1,11 @@
+/**
+ * Available realtime events to subscribe to.
+ */
+export enum REALTIME_EVENTS {
+  GAME_STARTED = 'GAME_STARTED',
+  ROUND_STARTED = 'ROUND_STARTED',
+  TURN_ENDED = 'TURN_ENDED',
+  WORD_CLAIMED = 'WORD_CLAIMED',
+  WORD_REMOVED = 'WORD_REMOVED',
+  WORDS_ADDED = 'WORDS_ADDED',
+}

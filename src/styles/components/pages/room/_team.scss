@@ -1,0 +1,67 @@
+.team-header {
+  display: flex;
+  justify-content: space-between;
+
+  color: $gray-dark;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 250px;
+  height: 50px;
+  border-bottom: 1px solid $gray-light;
+}
+
+.team-member-meta {
+  display: flex;
+  align-items: center;
+}
+
+.team-member-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: $gray-medium;
+  background-position: center;
+  background-size: cover;
+}
+
+.team-member-connection {
+  width: 8px;
+  height: 8px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background: $gray-medium;
+}
+
+.team-member-connection-active {
+  background-color: $green;
+}
+
+.team-member-leader,
+.team-member-next {
+  margin-left: 10px;
+  color: $primary-color;
+
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.team-member-next {
+  color: $secondary-color;
+}
+
+.team-member-status {
+  width: 45px;
+
+  text-align: center;
+}
+
+.team-member-status-ready {
+  color: $green;
+}
