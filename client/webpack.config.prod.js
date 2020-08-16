@@ -85,8 +85,8 @@ module.exports = {
       filename: 'css/[name].[contenthash].css',
     }),
 
-    new CopyWebpackPlugin(
-      [
+    new CopyWebpackPlugin({
+      patterns: [
         {
           from: './public/img',
           to: 'img',
@@ -95,10 +95,7 @@ module.exports = {
           from: './_redirects',
         },
       ],
-      {
-        copyUnmodified: false,
-      }
-    ),
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
