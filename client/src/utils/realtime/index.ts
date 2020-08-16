@@ -8,6 +8,14 @@ const pusherAppKey = process.env.PUSHER_APP_KEY
 if (!pusherAppKey) {
   throw new Error('Please add the PUSHER_APP_KEY environment variable.')
 }
+
+// @ts-ignore
+Pusher.Runtime.createXHR = function () {
+  const xhr = new XMLHttpRequest()
+  xhr.withCredentials = true
+
+  return xhr
+}
 const pusher = new Pusher(pusherAppKey, {
   authEndpoint: `${process.env.API_BASE_URL}/pusher-auth`,
   cluster: 'us2',
