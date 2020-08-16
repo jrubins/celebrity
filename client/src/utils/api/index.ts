@@ -18,7 +18,6 @@ export interface APIRequestOpts {
   method?: string
   query?: {}
   responseParser?: (response: Response) => Promise<any>
-  sendCookies?: boolean
   skipDefaultHeaders?: boolean
   testError?: {
     message?: string

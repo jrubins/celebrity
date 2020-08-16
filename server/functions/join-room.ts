@@ -14,7 +14,7 @@ interface JoinRoomBody {
 
 export const handler: Handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
-    return makeResponse({ statusCode: STATUS_CODES.NO_CONTENT })
+    return makeResponse({ statusCode: STATUS_CODES.OK })
   }
 
   const data: JoinRoomBody = JSON.parse(event.body)

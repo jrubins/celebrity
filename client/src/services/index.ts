@@ -146,7 +146,6 @@ async function prepareRequest<T>(
     makeErrorFn,
     query = {},
     responseParser = null,
-    sendCookies = false,
     skipDefaultHeaders = false,
     testError = undefined,
     ...otherRequestOpts
@@ -185,11 +184,10 @@ async function prepareRequest<T>(
     headers.set('Content-Type', JSON_MIME_TYPE)
   }
 
-  const requestOptions: RequestInit = { ...otherRequestOpts, headers }
-
-  // Isomorphic-fetch doesn't send cookies in requests by default.
-  if (sendCookies) {
-    requestOptions.credentials = 'include'
+  const requestOptions: RequestInit = {
+    ...otherRequestOpts,
+    credentials: 'include',
+    headers,
   }
 
   let requestHash: string
