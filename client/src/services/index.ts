@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import hash from 'object-hash'
 
+import { STATUS_CODES } from '../../../shared/types'
 import {
-  STATUS_CODES,
   APIRequestOpts,
   delayedApiRequest,
   makeApiResponseError,

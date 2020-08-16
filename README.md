@@ -93,6 +93,7 @@ In order for the application to run successfully, you'll need to create some env
 Inside of a `server/.env` file, create the following variables (filled in with the appropriate values):
 
 ```
+CLIENT_BASE_URL = ''
 DB_SECRET = ''
 PUSHER_APP_ID = ''
 PUSHER_APP_KEY = ''

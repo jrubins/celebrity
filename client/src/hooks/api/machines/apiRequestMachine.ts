@@ -1,6 +1,7 @@
 import { DoneInvokeEvent, Machine, assign } from 'xstate'
 
-import { STATUS_CODES, APIError, APIResponse } from '../../../utils/types'
+import { STATUS_CODES } from '../../../../../shared/types'
+import { APIError, APIResponse } from '../../../utils/types'
 
 export enum ACTIONS {
   CLEAR_DATA = 'clearData',
