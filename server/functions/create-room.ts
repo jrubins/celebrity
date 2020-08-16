@@ -13,6 +13,10 @@ interface CreateRoomBody {
 }
 
 export const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return makeResponse({ statusCode: STATUS_CODES.NO_CONTENT })
+  }
+
   const data: CreateRoomBody = JSON.parse(event.body)
   info('Function "create-room" invoked.', data)
   const { name: userCreating, password, roomName } = data
