@@ -13,6 +13,10 @@ interface JoinRoomBody {
 }
 
 export const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return makeResponse({ statusCode: STATUS_CODES.NO_CONTENT })
+  }
+
   const data: JoinRoomBody = JSON.parse(event.body)
   info('Function "join-room" invoked.', data)
   const { name: userJoining, password, roomName } = data

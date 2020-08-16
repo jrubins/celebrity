@@ -9,7 +9,7 @@ if (!pusherAppKey) {
   throw new Error('Please add the PUSHER_APP_KEY environment variable.')
 }
 const pusher = new Pusher(pusherAppKey, {
-  authEndpoint: '/api/pusher-auth',
+  authEndpoint: `${process.env.API_BASE_URL}/pusher-auth`,
   cluster: 'us2',
 })
 

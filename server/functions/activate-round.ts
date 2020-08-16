@@ -8,6 +8,10 @@ import { makeResponse } from '../utils/api'
 import { onGameStarted } from '../utils/realtime'
 
 export const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return makeResponse({ statusCode: STATUS_CODES.NO_CONTENT })
+  }
+
   const { roomId } = JSON.parse(event.body)
   info('Function "activate-round" invoked.', roomId)
 

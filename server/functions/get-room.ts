@@ -7,6 +7,10 @@ import { getRoomById } from '../utils/db'
 import { makeResponse } from '../utils/api'
 
 export const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return makeResponse({ statusCode: STATUS_CODES.NO_CONTENT })
+  }
+
   const { roomId } = event.queryStringParameters
   info('Function "get-room" invoked.', roomId)
 

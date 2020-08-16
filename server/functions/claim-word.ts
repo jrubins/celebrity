@@ -15,6 +15,10 @@ interface ClaimWordBody {
 }
 
 export const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return makeResponse({ statusCode: STATUS_CODES.NO_CONTENT })
+  }
+
   const userName = getLoggedInUser(event.headers.cookie)
   const data: ClaimWordBody = JSON.parse(event.body)
   const { roomId, word: wordToClaim } = data
