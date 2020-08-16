@@ -12,5 +12,5 @@
     "strictNullChecks": true,
     "tsBuildInfoFile": "./.tsbuildinfo"
   },
-  "include": ["src/**/*"]
+  "include": ["client/**/*", "server/**/*", "shared/**/*"]
 }

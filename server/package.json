@@ -1,0 +1,32 @@
+{
+  "name": "celebrity-server",
+  "version": "0.0.1",
+  "description": "Serverless Netlify functions to support the Celebrity client.",
+  "author": "Jon Rubins <jonrubins@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn && netlify-lambda build functions",
+    "start": "yarn && netlify-lambda serve --config ./webpack.functions.js functions"
+  },
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6",
+    "yarn": "1.22.4"
+  },
+  "dependencies": {
+    "faunadb": "2.14.2",
+    "lodash": "4.17.19",
+    "pusher": "3.0.1",
+    "random-words": "1.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.10.4",
+    "@babel/preset-typescript": "7.10.4",
+    "@types/aws-lambda": "8.10.59",
+    "@types/node": "14.0.27",
+    "dotenv-webpack": "2.0.0",
+    "netlify-lambda": "2.0.1",
+    "typescript": "3.9.7",
+    "webpack": "4.43.0"
+  }
+}

@@ -86,28 +86,57 @@ $ yarn -v
 
 ### Setting Up Environment Variables
 
-In order for the application to run successfully, you'll need to create some environment variables. We use [dotenv](https://github.com/motdotla/dotenv) to load in these values. Inside of a `.env` file, create the following variables (filled in with the appropriate values):
+In order for the application to run successfully, you'll need to create some environment variables. We use [dotenv](https://github.com/motdotla/dotenv) to load in these values.
+
+#### Server
+
+Inside of a `server/.env` file, create the following variables (filled in with the appropriate values):
 
 ```
 DB_SECRET = ''
 PUSHER_APP_ID = ''
 PUSHER_APP_KEY = ''
 PUSHER_APP_SECRET = ''
+```
 
+#### Client
+
+Inside of a `client/.env` file, create the following variables (filled in with the appropriate values):
+
+```
+API_BASE_URL = '/api'
+APP_ENV = 'development'
+NODE_ENV = 'development'
+PUSHER_APP_KEY = ''
 ```
 
 ### Start Celebrity
 
-After you've installed the dependencies, you can start running the project. We use `webpack-dev-server` to start a development server and we also use Netlify functions for the API.
+After you've installed the dependencies, you can start running the project.
 
-To **run** the project, run the following commands in two separate terminal windows:
+#### Server
+
+The server is a collection of Netlify functions. We use `netlify-lambda` to run these for development.
+
+To **run** the server, run the following commands:
 
 ```
+$ cd server
 $ yarn start
-$ yarn start:server
 ```
 
-Once you've run the project, you can connect to the development server at [http://localhost:9073](http://localhost:9073).
+#### Client
+
+For the client, we use `webpack-dev-server` to start a development server.
+
+To **run** the client, run the following commands:
+
+```
+$ cd client
+$ yarn start
+```
+
+The running development server will be at [http://localhost:9073](http://localhost:9073).
 
 ## Compilation
 
