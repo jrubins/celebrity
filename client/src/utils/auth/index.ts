@@ -13,5 +13,7 @@ export function getLoggedInUser() {
  * Stores the user's name.
  */
 export function storeName(name: string) {
-  Cookies.set(USER_NAME_COOKIE, name)
+  Cookies.set(USER_NAME_COOKIE, name, {
+    domain: process.env.COOKIES_DOMAIN,
+  })
 }
