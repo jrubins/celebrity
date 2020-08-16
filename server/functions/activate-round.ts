@@ -1,8 +1,10 @@
 // eslint-disable-next-line require-path-exists/exists
 import { Handler } from 'aws-lambda'
 
+import { STATUS_CODES } from '../../shared/types'
 import { error, info } from '../../shared/logs'
 import { getRoomById, updateRoom } from '../utils/db'
+import { makeResponse } from '../utils/api'
 import { onGameStarted } from '../utils/realtime'
 
 export const handler: Handler = async (event) => {
@@ -16,10 +18,10 @@ export const handler: Handler = async (event) => {
       ({ state }) => state === 'new' || state === 'pending'
     )
     if (!roundToActivate) {
-      return {
-        body: JSON.stringify({ message: 'Could not find round to activate.' }),
-        statusCode: 400,
-      }
+      return makeResponse({
+        body: { message: 'Could not find round to activate.' },
+        statusCode: STATUS_CODES.BAD_REQUEST,
+      })
     }
 
     roundToActivate.state = 'active'
@@ -28,16 +30,16 @@ export const handler: Handler = async (event) => {
     onGameStarted(roomId)
     info('Successfully activated round.', roomId)
 
-    return {
-      body: JSON.stringify(room.data),
-      statusCode: 200,
-    }
+    return makeResponse({
+      body: room.data,
+      statusCode: STATUS_CODES.OK,
+    })
   } catch (err) {
     error('Failed to activate round.', err)
 
-    return {
-      body: JSON.stringify(err),
-      statusCode: 500,
-    }
+    return makeResponse({
+      body: err,
+      statusCode: STATUS_CODES.SERVER_ERROR,
+    })
   }
 }

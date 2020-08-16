@@ -14,8 +14,8 @@ export function makeResponse({
     body: JSON.stringify(body),
     headers: {
       'Access-Control-Allow-Origin': process.env.CLIENT_BASE_URL || '',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      'Access-Control-Allow-Headers': 'Accept, Content-Type',
+      'Access-Control-Allow-Methods': 'GET, DELETE, OPTIONS, PATCH, POST, PUT',
     },
     statusCode,
   }

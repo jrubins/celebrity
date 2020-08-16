@@ -1,9 +1,11 @@
 // eslint-disable-next-line require-path-exists/exists
 import { Handler } from 'aws-lambda'
 
+import { STATUS_CODES } from '../../shared/types'
 import { generateAuth } from '../utils/realtime'
 import { getLoggedInUser } from '../utils/auth'
 import { info } from '../../shared/logs'
+import { makeResponse } from '../utils/api'
 import { stringToObject } from '../../shared/general'
 
 interface PusherAuthBody {
@@ -24,8 +26,8 @@ export const handler: Handler = async (event) => {
   const pusherAuth = generateAuth({ channel, socketId, userName })
   info('Successfully generated auth for Pusher requests.', pusherAuth)
 
-  return {
-    body: JSON.stringify(pusherAuth),
-    statusCode: 200,
-  }
+  return makeResponse({
+    body: pusherAuth,
+    statusCode: STATUS_CODES.OK,
+  })
 }

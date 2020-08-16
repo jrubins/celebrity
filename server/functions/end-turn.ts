@@ -1,10 +1,12 @@
 // eslint-disable-next-line require-path-exists/exists
 import { Handler } from 'aws-lambda'
 
+import { STATUS_CODES } from '../../shared/types'
 import { error, info } from '../../shared/logs'
 import { getLoggedInUser } from '../utils/auth'
 import { getNextLeaders } from '../utils/teams'
 import { getRoomById, updateRoom } from '../utils/db'
+import { makeResponse } from '../utils/api'
 import { onTurnEnded } from '../utils/realtime'
 
 interface EndTurnBody {
@@ -22,10 +24,10 @@ export const handler: Handler = async (event) => {
     const { rounds, teamA, teamB } = room.data
     const activeRound = rounds.find(({ state }) => state === 'active')
     if (!activeRound) {
-      return {
-        body: JSON.stringify({ message: 'Could not find active round.' }),
-        statusCode: 400,
-      }
+      return makeResponse({
+        body: { message: 'Could not find active round.' },
+        statusCode: STATUS_CODES.BAD_REQUEST,
+      })
     }
 
     const { leader, upNext } = getNextLeaders({
@@ -43,16 +45,16 @@ export const handler: Handler = async (event) => {
     onTurnEnded(roomId)
     info('Successfully ended turn.', room)
 
-    return {
-      body: JSON.stringify(room.data),
-      statusCode: 200,
-    }
+    return makeResponse({
+      body: room.data,
+      statusCode: STATUS_CODES.OK,
+    })
   } catch (err) {
     error('Failed to end turn.', err)
 
-    return {
-      body: JSON.stringify(err),
-      statusCode: 500,
-    }
+    return makeResponse({
+      body: err,
+      statusCode: STATUS_CODES.SERVER_ERROR,
+    })
   }
 }

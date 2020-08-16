@@ -1,9 +1,11 @@
 // eslint-disable-next-line require-path-exists/exists
 import { Handler } from 'aws-lambda'
 
+import { STATUS_CODES } from '../../shared/types'
 import { error, info } from '../../shared/logs'
 import { getLoggedInUser } from '../utils/auth'
 import { getRoomById, updateRoom } from '../utils/db'
+import { makeResponse } from '../utils/api'
 import { onWordRemoved } from '../utils/realtime'
 
 interface RemoveWordBody {
@@ -22,10 +24,10 @@ export const handler: Handler = async (event) => {
     const { rounds } = room.data
     const newRound = rounds.find(({ state }) => state === 'new')
     if (!newRound) {
-      return {
-        body: JSON.stringify({ message: 'Could not find pending round.' }),
-        statusCode: 400,
-      }
+      return makeResponse({
+        body: { message: 'Could not find pending round.' },
+        statusCode: STATUS_CODES.BAD_REQUEST,
+      })
     }
 
     // Remove the word if it exists for the submitted user.
@@ -38,16 +40,16 @@ export const handler: Handler = async (event) => {
     onWordRemoved(roomId)
     info('Successfully removed word from round.', room)
 
-    return {
-      body: JSON.stringify(room.data),
-      statusCode: 200,
-    }
+    return makeResponse({
+      body: room.data,
+      statusCode: STATUS_CODES.OK,
+    })
   } catch (err) {
     error('Failed to remove word from round.', err)
 
-    return {
-      body: JSON.stringify(err),
-      statusCode: 500,
-    }
+    return makeResponse({
+      body: err,
+      statusCode: STATUS_CODES.SERVER_ERROR,
+    })
   }
 }

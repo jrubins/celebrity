@@ -1,10 +1,11 @@
 // eslint-disable-next-line require-path-exists/exists
 import { Handler } from 'aws-lambda'
 
-import { Word } from '../../shared/types'
+import { STATUS_CODES, Word } from '../../shared/types'
 import { error, info } from '../../shared/logs'
 import { getLoggedInUser } from '../utils/auth'
 import { getRoomById, updateRoom } from '../utils/db'
+import { makeResponse } from '../utils/api'
 import { onWordsAdded } from '../utils/realtime'
 
 interface AddWordsBody {
@@ -23,10 +24,10 @@ export const handler: Handler = async (event) => {
     const { rounds } = room.data
     const newRound = rounds.find(({ state }) => state === 'new')
     if (!newRound) {
-      return {
-        body: JSON.stringify({ message: 'Could not find new round.' }),
-        statusCode: 400,
-      }
+      return makeResponse({
+        body: { message: 'Could not find new round.' },
+        statusCode: STATUS_CODES.BAD_REQUEST,
+      })
     }
 
     // Add the new words to the pending round.
@@ -44,16 +45,16 @@ export const handler: Handler = async (event) => {
     onWordsAdded(roomId)
     info('Successfully added words to round.', room)
 
-    return {
-      body: JSON.stringify(room.data),
-      statusCode: 200,
-    }
+    return makeResponse({
+      body: room.data,
+      statusCode: STATUS_CODES.OK,
+    })
   } catch (err) {
     error('Failed to add words to round.', err)
 
-    return {
-      body: JSON.stringify(err),
-      statusCode: 500,
-    }
+    return makeResponse({
+      body: err,
+      statusCode: STATUS_CODES.SERVER_ERROR,
+    })
   }
 }

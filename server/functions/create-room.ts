@@ -30,9 +30,9 @@ export const handler: Handler = async (event) => {
   } catch (err) {
     error('Failed to create new room.', err)
 
-    return {
-      body: JSON.stringify(err),
-      statusCode: 500,
-    }
+    return makeResponse({
+      body: err,
+      statusCode: STATUS_CODES.SERVER_ERROR,
+    })
   }
 }
