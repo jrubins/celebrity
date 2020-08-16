@@ -158,3 +158,7 @@ Celebrity uses [Prettier](https://prettier.io/) (an opinionated code formatter) 
 **You don't have to install anything for this to work. Prettier is a dependency of Celebrity, which means it is installed anytime your other dependencies are installed (i.e. anytime `yarn` is run).**
 
 ## Deployment
+
+There are two Netlify projects for deploying the client and server: `celebritygame` and `celebritygame-functions`. Environment variables are handled via the Netlify UI.
+
+The URL for the production game is: https://celebritygame.netlify.app/
