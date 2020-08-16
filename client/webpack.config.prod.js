@@ -16,7 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?|\.tsx?$/,
-        include: [buildConfig.paths.app.src],
+        include: [buildConfig.paths.app.src, buildConfig.paths.shared],
         loader: 'babel-loader',
       },
       {
@@ -55,8 +55,8 @@ module.exports = {
   output: {
     chunkFilename: 'js/[name].[chunkhash].js',
     filename: 'js/[name].[chunkhash].js',
-    path: `${buildConfig.paths.dist}-${process.env.DEPLOY_ENV}/${process.env.GIT_HASH}`,
-    publicPath: `${process.env.ASSETS_URL}/${process.env.GIT_HASH}/`,
+    path: buildConfig.paths.dist,
+    publicPath: '/',
   },
   plugins: [
     // This is a shorthand plugin for the DefinePlugin.

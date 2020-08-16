@@ -5,6 +5,7 @@
   "author": "Jon Rubins <jonrubins@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "webpack --progress --config webpack.config.prod.js",
     "start": "yarn && webpack-dev-server --progress --config webpack.config.dev.js"
   },
   "engines": {

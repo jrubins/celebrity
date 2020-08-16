@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "compile": "yarn --production=false && tsc",
+    "build:client": "yarn --cwd client build",
+    "build:server": "yarn --cwd server build",
     "lint": "eslint client/src client/babel.config.js client/buildConfig.js client/postcss.config.js client/webpack.config.dev.js client/webpack.config.prod.js server/functions server/utils server/babel.config.js server/webpack.functions.js shared --cache --ext=.js,.jsx,.ts,.tsx"
   },
   "engines": {
